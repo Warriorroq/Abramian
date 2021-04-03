@@ -34,12 +34,12 @@ namespace Abramyan
 
         //5
         private static string NumTask(string nums)
-            => string.Join(' ',SortByRange(TakeClearNums(nums.Trim())));
-        private static IEnumerable<int> TakeClearNums(string nums)
-            => nums.Split().Where(x => IsNumber(x)).Select(x => int.Parse(x));
+            => string.Join(' ',SortByRange(TakeClearNums(nums.Trim(), 0)));
+        private static IEnumerable<int> TakeClearNums(string nums, int A)
+            => nums.Split().Where(x => int.TryParse(x, out A)).Select(x => int.Parse(x));
         private static IEnumerable<int> SortByRange(IEnumerable<int> nums)
             => nums.Where(x => x <= 1000 && x > 0).OrderByDescending(x => -x);
-        private static bool IsNumber(string num)
-            => num.All(x => (x >= 48 && x <= 57) || x == 45);
+        /*private static bool IsNumber(string num)
+            => num.All(x => (x >= 48 && x <= 57) || x == 45);*/
     }
 }
